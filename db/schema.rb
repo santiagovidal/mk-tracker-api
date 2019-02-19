@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_19_134258) do
+ActiveRecord::Schema.define(version: 2019_02_19_135157) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,6 +19,15 @@ ActiveRecord::Schema.define(version: 2019_02_19_134258) do
     t.integer "races_count"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "races", force: :cascade do |t|
+    t.bigint "championship_id"
+    t.bigint "track_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["championship_id"], name: "index_races_on_championship_id"
+    t.index ["track_id"], name: "index_races_on_track_id"
   end
 
   create_table "tracks", force: :cascade do |t|
@@ -32,4 +41,6 @@ ActiveRecord::Schema.define(version: 2019_02_19_134258) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "races", "championships"
+  add_foreign_key "races", "tracks"
 end
