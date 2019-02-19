@@ -22,5 +22,5 @@ class UserResult < ApplicationRecord
   belongs_to :track
   belongs_to :championship
 
-  validate :position, presence: true
+  validates :position, presence: true
 end

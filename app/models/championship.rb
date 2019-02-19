@@ -10,4 +10,6 @@
 
 class Championship < ApplicationRecord
   has_many :user_results
+
+  accepts_nested_attributes_for :user_results
 end
