@@ -8,6 +8,7 @@ gem 'rails', '~> 5.2.0'
 
 gem 'activeadmin', '~> 1.3.0'
 gem 'bootsnap', '~> 1.3.0'
+gem 'devise', '~> 4.4.3'
 gem 'draper', '~> 3.0.0'
 gem 'figaro', '~> 1.1.1'
 gem 'haml-rails', '~> 1.0.0'
