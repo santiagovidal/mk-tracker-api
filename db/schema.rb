@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_19_135157) do
+ActiveRecord::Schema.define(version: 2019_02_19_135750) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,18 +21,21 @@ ActiveRecord::Schema.define(version: 2019_02_19_135157) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "races", force: :cascade do |t|
-    t.bigint "championship_id"
-    t.bigint "track_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["championship_id"], name: "index_races_on_championship_id"
-    t.index ["track_id"], name: "index_races_on_track_id"
-  end
-
   create_table "tracks", force: :cascade do |t|
     t.string "name"
     t.string "image"
+  end
+
+  create_table "user_results", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "track_id"
+    t.bigint "championship_id"
+    t.integer "position"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["championship_id"], name: "index_user_results_on_championship_id"
+    t.index ["track_id"], name: "index_user_results_on_track_id"
+    t.index ["user_id"], name: "index_user_results_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -41,6 +44,7 @@ ActiveRecord::Schema.define(version: 2019_02_19_135157) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "races", "championships"
-  add_foreign_key "races", "tracks"
+  add_foreign_key "user_results", "championships"
+  add_foreign_key "user_results", "tracks"
+  add_foreign_key "user_results", "users"
 end
