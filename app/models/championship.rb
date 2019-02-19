@@ -9,5 +9,5 @@
 #
 
 class Championship < ApplicationRecord
-
+  has_many :user_results
 end

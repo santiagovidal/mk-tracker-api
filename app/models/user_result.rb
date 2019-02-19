@@ -18,5 +18,9 @@
 #
 
 class UserResult < ApplicationRecord
+  belongs_to :user
+  belongs_to :track
+  belongs_to :championship
 
+  validate :position, presence: true
 end
