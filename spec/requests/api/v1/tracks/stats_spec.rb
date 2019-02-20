@@ -28,13 +28,13 @@ describe 'GET api/v1/tracks/stats', type: :request do
   it 'returns the correct stats' do
     subject
 
-    expect(json[:stats][track1.id.to_s][user1.id.to_s]).to eq(1)
-    expect(json[:stats][track1.id.to_s][user2.id.to_s]).to eq(2)
-    expect(json[:stats][track1.id.to_s][user3.id.to_s]).to eq(1)
-    expect(json[:stats][track1.id.to_s][user4.id.to_s]).to eq(0)
-    expect(json[:stats][track2.id.to_s][user1.id.to_s]).to eq(0)
-    expect(json[:stats][track2.id.to_s][user2.id.to_s]).to eq(1)
-    expect(json[:stats][track2.id.to_s][user3.id.to_s]).to eq(0)
-    expect(json[:stats][track2.id.to_s][user4.id.to_s]).to eq(1)
+    expect(json[:stats][0][user1.id.to_s]).to eq(1)
+    expect(json[:stats][0][user2.id.to_s]).to eq(2)
+    expect(json[:stats][0][user3.id.to_s]).to eq(1)
+    expect(json[:stats][0][user4.id.to_s]).to eq(0)
+    expect(json[:stats][1][user1.id.to_s]).to eq(0)
+    expect(json[:stats][1][user2.id.to_s]).to eq(1)
+    expect(json[:stats][1][user3.id.to_s]).to eq(0)
+    expect(json[:stats][1][user4.id.to_s]).to eq(1)
   end
 end

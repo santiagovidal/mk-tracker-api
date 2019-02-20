@@ -7,9 +7,8 @@ module Api
 
       def stats
         tracks = Track.includes(:user_results)
-        stats_by_track = tracks.inject({}) do |stats_by_track, track|
-          stats_by_track[track.id] = track.wins_by_user
-          stats_by_track
+        stats_by_track = tracks.map do |track|
+          track.wins_by_user.merge(id: track.id)
         end
 
         render json: { stats: stats_by_track }
