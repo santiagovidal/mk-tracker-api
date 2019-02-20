@@ -4,6 +4,10 @@ module Api
       def index
         @users = User.order(id: :asc)
       end
+
+      def summary
+
+      end
     end
   end
 end
