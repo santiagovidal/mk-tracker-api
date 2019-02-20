@@ -4,6 +4,7 @@ describe 'GET api/v1/tracks/stats', type: :request do
   let(:subject) { get stats_api_v1_tracks_path, as: :json }
   let!(:track1) { create(:track) }
   let!(:track2) { create(:track) }
+  let!(:track3) { create(:track) } # this one doesn't have first place results
   let!(:user1)  { create(:user) }
   let!(:user2)  { create(:user) }
   let!(:user3)  { create(:user) }
@@ -19,6 +20,10 @@ describe 'GET api/v1/tracks/stats', type: :request do
   let!(:user_result8)  { create(:user_result, track: track2, user: user2, position: 1) }
   let!(:user_result9)  { create(:user_result, track: track2, user: user3, position: 3) }
   let!(:user_result10) { create(:user_result, track: track2, user: user4, position: 1) }
+  let!(:user_result11) { create(:user_result, track: track3, user: user1, position: 5) }
+  let!(:user_result12) { create(:user_result, track: track3, user: user2, position: 4) }
+  let!(:user_result13) { create(:user_result, track: track3, user: user3, position: 3) }
+  let!(:user_result14) { create(:user_result, track: track3, user: user4, position: 2) }
 
   it 'returns success' do
     subject
@@ -36,5 +41,10 @@ describe 'GET api/v1/tracks/stats', type: :request do
     expect(json[track2.id.to_s][user2.id.to_s]).to eq(1)
     expect(json[track2.id.to_s][user3.id.to_s]).to be_nil
     expect(json[track2.id.to_s][user4.id.to_s]).to eq(1)
+
+    expect(json[track3.id.to_s][user1.id.to_s]).to be_nil
+    expect(json[track3.id.to_s][user2.id.to_s]).to be_nil
+    expect(json[track3.id.to_s][user3.id.to_s]).to be_nil
+    expect(json[track3.id.to_s][user4.id.to_s]).to be_nil
   end
 end

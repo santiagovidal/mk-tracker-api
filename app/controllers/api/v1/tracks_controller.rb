@@ -6,8 +6,10 @@ module Api
       end
 
       def stats
+        initial_hash = Track.pluck(:id).inject({}) { |hash, id| hash[id] = {}; hash }
         grouped_counts = UserResult.first_positions.group(:track_id, :user_id).count
-        counts_by_user_and_track = grouped_counts.inject({}) do |stats, data|
+
+        counts_by_user_and_track = grouped_counts.inject(initial_hash) do |stats, data|
           track_id, user_id = data[0]
           count = data[1]
 
