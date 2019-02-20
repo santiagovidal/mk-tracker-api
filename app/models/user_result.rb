@@ -23,4 +23,6 @@ class UserResult < ApplicationRecord
   belongs_to :championship
 
   validates :position, presence: true
+
+  scope :first_positions, -> { where(position: 1) }
 end
