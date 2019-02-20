@@ -12,7 +12,7 @@ class Track < ApplicationRecord
 
   validates :name, presence: true
 
-  scope :alphabetical, -> { order(name: :desc) }
+  scope :alphabetical, -> { order(name: :asc) }
 
   def wins_by_user
     user_results.inject({}) do |summary, user_result|
