@@ -9,4 +9,6 @@
 
 class Track < ApplicationRecord
   validates :name, presence: true
+
+  scope :alphabetical, -> { order(name: :desc) }
 end
