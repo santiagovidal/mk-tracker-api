@@ -9,7 +9,7 @@
 #
 
 class Championship < ApplicationRecord
-  has_many :user_results
+  has_many :user_results, dependent: :destroy
 
   accepts_nested_attributes_for :user_results
 end
